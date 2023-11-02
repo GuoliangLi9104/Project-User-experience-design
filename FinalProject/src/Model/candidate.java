@@ -3,21 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-
+import java.sql.Blob;
 /**
  *
  * @author JRS
  */
 public class candidate {
+
     private int id;
     private String name, lastName;
     private int id_party;
-
-    public candidate(int id, String name, String lastName, int id_party) {
+    private Blob picture;
+    
+    public candidate(int id, String name, String lastName, Blob picture, int id_party) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.id_party = id_party;
+        this.picture = picture;
     }
 
     public candidate(int id, String name, String lastName) {
@@ -80,5 +83,19 @@ public class candidate {
      */
     public void setId_party(int id_party) {
         this.id_party = id_party;
+    }
+
+    /**
+     * @return the picture
+     */
+    public Blob getPicture() {
+        return picture;
+    }
+
+    /**
+     * @param picture the picture to set
+     */
+    public void setPicture(Blob picture) {
+        this.picture = picture;
     }
 }
