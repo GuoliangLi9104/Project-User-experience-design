@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package controller;
 
-import Model.candidate;
-import Model.candidateDAO;
+import model.candidate;
+import model.candidateDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;

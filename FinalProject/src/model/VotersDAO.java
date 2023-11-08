@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package model;
 
-import java.io.ByteArrayInputStream;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,23 +14,23 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author JRS
+ * @author Li
  */
-public class candidateDAO {
-    
-     public candidateDAO() {
-    }
+public class VotersDAO {
 
-    public void create(candidate Candidate) {
+    public VotersDAO() {
+    }
+    
+     public void createVoters(Voters voters) {
 
         DBConnectionJava db = new DBConnectionJava();
-        String consultaSQL = "INSERT INTO candidates (name, lastName, picture, id_party) VALUES (?, ?, ?, ?)";
+        String consultaSQL = "INSERT INTO voter (idNumber, name, lastName, vote) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
-            ps.setString(1, Candidate.getName());
-            ps.setString(2, Candidate.getLastName());
-            ps.setBlob(3, Candidate.getPicture());
-            ps.setInt(4, Candidate.getId_party());
+            ps.setInt(1, voters.getIDNumber());
+            ps.setString(2, voters.getName());
+            ps.setString(3, voters.getLastName());
+            ps.setInt(4, voters.getVote());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Se insertó correctamente el candidato");
         } catch (SQLException e) {
@@ -41,42 +40,41 @@ public class candidateDAO {
         }
     }
 
-  public List<candidate> read() {
+  public List<Voters> readVoters() {
     DBConnectionJava db = new DBConnectionJava();
-    List<candidate> candidates = new ArrayList<>();
-    String sql = "SELECT * FROM candidates";
+    List<Voters> Voter = new ArrayList<>();
+    String sql = "SELECT * FROM voter";
 
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
         ResultSet resultSet = ps.executeQuery();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
+            int idNumber = resultSet.getInt("idNumber");
             String name = resultSet.getString("name");
             String lastName = resultSet.getString("lastName");
-            Blob picture = resultSet.getBlob("picture");
-            int id_party = resultSet.getInt("id_party");
+            int vote = resultSet.getInt("vote");
 
-            candidates.add(new candidate(id, name, lastName, picture, id_party));
+            Voter.add(new Voters(id,idNumber, name, lastName, vote));
         }
     } catch (SQLException e) {
         System.err.println("Error: " + e.getMessage());
     } finally {
         db.disconnect();
     }
-    return candidates;
+    return Voter;
 }
 
-  public void update(candidate Candidate) {
+  public void updateVoters(Voters voters) {
     DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE candidates SET name=?, lastName=?, picture=?, id_party=? WHERE id=?";
+    String consultaSQL = "UPDATE voter SET idNumber=?,name=?, lastName=?, vote=? WHERE id=?";
     
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
-        ps.setString(1, Candidate.getName());
-        ps.setString(2, Candidate.getLastName());
-        ps.setBlob(3, Candidate.getPicture());
-        ps.setInt(4, Candidate.getId_party());
-        ps.setInt(5, Candidate.getId());
+        ps.setInt(1, voters.getIDNumber());
+        ps.setString(1, voters.getName());
+        ps.setString(2, voters.getLastName());
+        ps.setInt(4, voters.getVote());
         ps.execute();
         JOptionPane.showMessageDialog(null, "Modificación Exitosa");
     } catch (SQLException e) {
