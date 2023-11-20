@@ -28,76 +28,289 @@ public class frmAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         JPMain = new javax.swing.JPanel();
-        JPLVoter = new javax.swing.JLayeredPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblImagen = new javax.swing.JLabel();
-        JPLAdmin = new javax.swing.JLayeredPane();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtLastNameCandi = new javax.swing.JTextField();
+        txtNameCandi = new javax.swing.JTextField();
+        lblImagenCandi = new javax.swing.JLabel();
+        cbxPartyCandi = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        lblVoteVoters = new javax.swing.JLabel();
+        lblIDVoters = new javax.swing.JLabel();
+        lblLastNameVoters = new javax.swing.JLabel();
+        lblNameVoters = new javax.swing.JLabel();
+        txtLastNameVoters = new javax.swing.JTextField();
+        txtNameVoters = new javax.swing.JTextField();
+        txtIDVoters = new javax.swing.JTextField();
+        txtVoteVoters = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        cbxPartyCandi2 = new javax.swing.JComboBox<>();
+        cbxPartyCandi3 = new javax.swing.JComboBox<>();
+        cbxPartyCandi4 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtLastNameCandi1 = new javax.swing.JTextField();
+        txtNameCandi1 = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        JPMain.setMinimumSize(new java.awt.Dimension(700, 500));
+        JPMain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Ingrese su numero de cedula");
+        jLabel1.setText("Imagen:");
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
 
-        JPLVoter.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        JPLVoter.setLayer(lblImagen, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Partido:");
+        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        javax.swing.GroupLayout JPLVoterLayout = new javax.swing.GroupLayout(JPLVoter);
-        JPLVoter.setLayout(JPLVoterLayout);
-        JPLVoterLayout.setHorizontalGroup(
-            JPLVoterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPLVoterLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jLabel1)
-                .addContainerGap(188, Short.MAX_VALUE))
-            .addComponent(lblImagen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Apellido:");
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Nombre:");
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        txtLastNameCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel5.add(txtLastNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 290, -1));
+
+        txtNameCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel5.add(txtNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
+        jPanel5.add(lblImagenCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 250, 130));
+
+        cbxPartyCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbxPartyCandi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel5.add(cbxPartyCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        JPLVoterLayout.setVerticalGroup(
-            JPLVoterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPLVoterLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                .addContainerGap())
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout JPLAdminLayout = new javax.swing.GroupLayout(JPLAdmin);
-        JPLAdmin.setLayout(JPLAdminLayout);
-        JPLAdminLayout.setHorizontalGroup(
-            JPLAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 579, Short.MAX_VALUE)
+        jTabbedPane1.addTab("Candidatos", jPanel1);
+
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblVoteVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblVoteVoters.setForeground(new java.awt.Color(0, 0, 0));
+        lblVoteVoters.setText("Voto:");
+        jPanel6.add(lblVoteVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, -1, -1));
+
+        lblIDVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblIDVoters.setForeground(new java.awt.Color(0, 0, 0));
+        lblIDVoters.setText("Cedula:");
+        jPanel6.add(lblIDVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+
+        lblLastNameVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblLastNameVoters.setForeground(new java.awt.Color(0, 0, 0));
+        lblLastNameVoters.setText("Apellido:");
+        jPanel6.add(lblLastNameVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 80, -1));
+
+        lblNameVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblNameVoters.setForeground(new java.awt.Color(0, 0, 0));
+        lblNameVoters.setText("Nombre:");
+        jPanel6.add(lblNameVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        txtLastNameVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel6.add(txtLastNameVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 180, -1));
+
+        txtNameVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel6.add(txtNameVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
+
+        txtIDVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel6.add(txtIDVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 180, -1));
+
+        txtVoteVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel6.add(txtVoteVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 180, -1));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        JPLAdminLayout.setVerticalGroup(
-            JPLAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout JPMainLayout = new javax.swing.GroupLayout(JPMain);
-        JPMain.setLayout(JPMainLayout);
-        JPMainLayout.setHorizontalGroup(
-            JPMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPLAdmin)
-            .addGroup(JPMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(JPLVoter, javax.swing.GroupLayout.Alignment.TRAILING))
+        jTabbedPane1.addTab("Votantes", jPanel3);
+
+        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Partido:");
+        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Voto:");
+        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Nombre:");
+        jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        cbxPartyCandi2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbxPartyCandi2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(cbxPartyCandi2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
+
+        cbxPartyCandi3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbxPartyCandi3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(cbxPartyCandi3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 180, -1));
+
+        cbxPartyCandi4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbxPartyCandi4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel7.add(cbxPartyCandi4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, -1));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        JPMainLayout.setVerticalGroup(
-            JPMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPLAdmin)
-            .addGroup(JPMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(JPLVoter, javax.swing.GroupLayout.Alignment.TRAILING))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jTabbedPane1.addTab("Votos", jPanel4);
+
+        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Candidato:");
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Nombre:");
+        jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        txtLastNameCandi1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel8.add(txtLastNameCandi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 290, -1));
+
+        txtNameCandi1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel8.add(txtNameCandi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable4);
+
+        jPanel8.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.addTab("Partidos", jPanel2);
+
+        JPMain.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+
+        getContentPane().add(JPMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,10 +351,49 @@ public class frmAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane JPLAdmin;
-    private javax.swing.JLayeredPane JPLVoter;
     private javax.swing.JPanel JPMain;
+    private javax.swing.JComboBox<String> cbxPartyCandi;
+    private javax.swing.JComboBox<String> cbxPartyCandi2;
+    private javax.swing.JComboBox<String> cbxPartyCandi3;
+    private javax.swing.JComboBox<String> cbxPartyCandi4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JLabel lblIDVoters;
+    private javax.swing.JLabel lblImagenCandi;
+    private javax.swing.JLabel lblLastNameVoters;
+    private javax.swing.JLabel lblNameVoters;
+    private javax.swing.JLabel lblVoteVoters;
+    private javax.swing.JTextField txtIDVoters;
+    private javax.swing.JTextField txtLastNameCandi;
+    private javax.swing.JTextField txtLastNameCandi1;
+    private javax.swing.JTextField txtLastNameVoters;
+    private javax.swing.JTextField txtNameCandi;
+    private javax.swing.JTextField txtNameCandi1;
+    private javax.swing.JTextField txtNameVoters;
+    private javax.swing.JTextField txtVoteVoters;
     // End of variables declaration//GEN-END:variables
 }

@@ -26,8 +26,9 @@ public class frmLogin extends javax.swing.JFrame {
     }
 
     public void loadImagens() {
-        ImageIcon Flag = new ImageIcon("Imagenes/Flag.gif");
-        this.lblWallpaperFlag.setIcon(Flag);
+        ImageIcon Wallpaper = new ImageIcon("Imagenes/EleccionesElectorales.png");
+        this.lblWallpaperAdmin.setIcon(Wallpaper);
+        this.lblWallpaperLogn.setIcon(Wallpaper);
     }
 
     /**
@@ -46,12 +47,13 @@ public class frmLogin extends javax.swing.JFrame {
         lblGetIntoVoter = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         btnExitAll = new javax.swing.JButton();
-        lblWallpaperFlag = new javax.swing.JLabel();
+        lblWallpaperLogn = new javax.swing.JLabel();
         JPLAdmin = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         btnGetIntoAdmin = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        lblWallpaperAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,17 +67,17 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Ingrese su numero de cedula");
-        JPLVoter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
+        JPLVoter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
         lblId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lblIdActionPerformed(evt);
             }
         });
-        JPLVoter.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 260, 30));
+        JPLVoter.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 260, 30));
 
         lblGetIntoVoter.setText("Ingresar");
-        JPLVoter.add(lblGetIntoVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
+        JPLVoter.add(lblGetIntoVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
         btnAdmin.setText("Admin");
         btnAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +85,7 @@ public class frmLogin extends javax.swing.JFrame {
                 btnAdminActionPerformed(evt);
             }
         });
-        JPLVoter.add(btnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 70, -1));
+        JPLVoter.add(btnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 70, -1));
 
         btnExitAll.setText("Salir");
         btnExitAll.addActionListener(new java.awt.event.ActionListener() {
@@ -91,17 +93,19 @@ public class frmLogin extends javax.swing.JFrame {
                 btnExitAllActionPerformed(evt);
             }
         });
-        JPLVoter.add(btnExitAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 70, -1));
-        JPLVoter.add(lblWallpaperFlag, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 450, 180));
+        JPLVoter.add(btnExitAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 70, -1));
 
-        JPMain.add(JPLVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 250));
+        lblWallpaperLogn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Li\\Music\\Project-User-experience-design\\FinalProject\\Imagenes\\Elecciones electorales.png")); // NOI18N
+        JPLVoter.add(lblWallpaperLogn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 500, 220));
+
+        JPMain.add(JPLVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 200));
 
         JPLAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese su contraseña:");
-        JPLAdmin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+        JPLAdmin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, -1, -1));
 
         txtPassword.setText("jPasswordField1");
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -109,10 +113,10 @@ public class frmLogin extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
-        JPLAdmin.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 300, -1));
+        JPLAdmin.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 300, -1));
 
         btnGetIntoAdmin.setText("Ingresar");
-        JPLAdmin.add(btnGetIntoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+        JPLAdmin.add(btnGetIntoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
         btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -120,19 +124,22 @@ public class frmLogin extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
-        JPLAdmin.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
+        JPLAdmin.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, -1, -1));
 
-        JPMain.add(JPLAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 250));
+        lblWallpaperAdmin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Li\\Music\\Project-User-experience-design\\FinalProject\\Imagenes\\Elecciones electorales.png")); // NOI18N
+        JPLAdmin.add(lblWallpaperAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 500, 220));
+
+        JPMain.add(JPLAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 200));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPMain, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(JPMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPMain, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+            .addComponent(JPMain, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
 
         pack();
@@ -208,7 +215,8 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton lblGetIntoVoter;
     private javax.swing.JTextField lblId;
-    private javax.swing.JLabel lblWallpaperFlag;
+    private javax.swing.JLabel lblWallpaperAdmin;
+    private javax.swing.JLabel lblWallpaperLogn;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
