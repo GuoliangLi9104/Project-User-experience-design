@@ -41,6 +41,10 @@ public class frmAdmin extends javax.swing.JFrame {
         cbxPartyCandi = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        JBotton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblVoteVoters = new javax.swing.JLabel();
@@ -53,6 +57,9 @@ public class frmAdmin extends javax.swing.JFrame {
         txtVoteVoters = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        JBotton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -63,6 +70,9 @@ public class frmAdmin extends javax.swing.JFrame {
         cbxPartyCandi4 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
+        JBotton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -71,6 +81,9 @@ public class frmAdmin extends javax.swing.JFrame {
         txtNameCandi1 = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        jButton8 = new javax.swing.JButton();
+        JBotton6 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,7 +119,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         txtNameCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel5.add(txtNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
-        jPanel5.add(lblImagenCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 250, 130));
+        jPanel5.add(lblImagenCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 250, 130));
 
         cbxPartyCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbxPartyCandi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -125,7 +138,19 @@ public class frmAdmin extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
+
+        jButton1.setText("+");
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, -1, -1));
+
+        jButton2.setText("Modificar");
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
+
+        JBotton3.setText("Eliminar");
+        jPanel5.add(JBotton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
+
+        jButton4.setText("Agregar");
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,7 +213,16 @@ public class frmAdmin extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
+
+        jButton5.setText("Agregar");
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
+
+        JBotton4.setText("Eliminar");
+        jPanel6.add(JBotton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
+
+        jButton3.setText("Modificar");
+        jPanel6.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -246,7 +280,16 @@ public class frmAdmin extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+        jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
+
+        jButton6.setText("Agregar");
+        jPanel7.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
+
+        JBotton5.setText("Eliminar");
+        jPanel7.add(JBotton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
+
+        jButton7.setText("Modificar");
+        jPanel7.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -293,7 +336,16 @@ public class frmAdmin extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(jTable4);
 
-        jPanel8.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 700, 360));
+        jPanel8.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
+
+        jButton8.setText("Agregar");
+        jPanel8.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
+
+        JBotton6.setText("Eliminar");
+        jPanel8.add(JBotton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
+
+        jButton9.setText("Modificar");
+        jPanel8.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -308,7 +360,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Partidos", jPanel2);
 
-        JPMain.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+        JPMain.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         getContentPane().add(JPMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -351,11 +403,24 @@ public class frmAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBotton3;
+    private javax.swing.JButton JBotton4;
+    private javax.swing.JButton JBotton5;
+    private javax.swing.JButton JBotton6;
     private javax.swing.JPanel JPMain;
     private javax.swing.JComboBox<String> cbxPartyCandi;
     private javax.swing.JComboBox<String> cbxPartyCandi2;
     private javax.swing.JComboBox<String> cbxPartyCandi3;
     private javax.swing.JComboBox<String> cbxPartyCandi4;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
