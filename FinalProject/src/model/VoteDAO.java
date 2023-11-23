@@ -101,4 +101,23 @@ public class VoteDAO {
         }
         
     }
+    public int getIDVote(String name) {
+        int value = 0;
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT id FROM votes WHERE name = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
+    }
+
 }
