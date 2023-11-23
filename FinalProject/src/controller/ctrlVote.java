@@ -37,18 +37,18 @@ public class ctrlVote {
     public void addVote(JTextField idVoter, JTextField idParty, JTextField idVote) {
         try {
             this.daoVote.createVote(new Vote(this.id, Integer.parseInt(idVoter.getText()), Integer.parseInt(idParty.getText()), Integer.parseInt(idVote.getText())));
-            JOptionPane.showMessageDialog(null, "Vote added successfully");
+            JOptionPane.showMessageDialog(null, "Voto añadido exitosamente");
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error in data format: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error en el formato: " + e.toString());
         }
     }
 
     public void updateVote(JTextField idVoter, JTextField idParty, JTextField idVote) {
         try {
             this.daoVote.updateVote(new Vote(this.id, Integer.parseInt(idVoter.getText()), Integer.parseInt(idParty.getText()), Integer.parseInt(idVote.getText())));
-            JOptionPane.showMessageDialog(null, "Vote updated successfully");
+            JOptionPane.showMessageDialog(null, "Voto modificado exitosamente");
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error in data format: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error en el formato: " + e.toString());
         }
     }
 
@@ -78,12 +78,12 @@ public class ctrlVote {
                 idParty.setText(table.getValueAt(row, 2).toString());
                 idVote.setText(table.getValueAt(row, 3).toString());
             } else {
-                JOptionPane.showMessageDialog(null, "Row not selected");
+                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Selection error, error: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error de seleccion : " + e.toString());
         }
-        return "";  // Return some value as needed
+        return "";  
     }
 
     public void clearFields(JTextField idVoter, JTextField idParty, JTextField idVote) {
