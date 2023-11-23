@@ -85,6 +85,43 @@ public class candidateDAO {
         db.disconnect();
     }
 }
+  public int getIDCandidate(String name) {
+        int value = 0;
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT id FROM candidates WHERE name = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
+    }
+
+    public String getNameCandidate(int id) {
+        String value = "";
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT name FROM candidates WHERE id = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
+    }
 
     public void deleteCandidate(int id) {
 

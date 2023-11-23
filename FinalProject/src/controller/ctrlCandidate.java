@@ -13,11 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import java.sql.Blob;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import model.*;
 
 /**
@@ -26,8 +23,7 @@ import model.*;
  */
 public class ctrlCandidate {
     private candidateDAO daoCandi = new candidateDAO();
-    private partieDAO daoParty = new partieDAO();
-    private int id, partyID;
+    private int id, candidateID;
 
     public void loadDataCandidates(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -63,22 +59,22 @@ public class ctrlCandidate {
         this.daoCandi.deleteCandidate(this.id);
     }
 
-    public void getIdParty(JComboBox Party) {
-        this.partyID = this.daoParty.getIDParty(Party.getSelectedItem().toString());
+    public void getIDCandidate(JComboBox candidate) {
+        this.candidateID = this.daoCandi.getIDCandidate(candidate.getSelectedItem().toString());
     }
 
-    public void loadParty(JComboBox s) {
-        List<partie> parties = this.daoParty.readParties();
+    public void loadCandidate(JComboBox s) {
+        List<candidate> candidates = this.daoCandi.readCandidate();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-        for (partie Party : parties) {
-            model.addElement(Party.getName());
+        for (candidate Candidate : candidates) {
+            model.addElement(Candidate.getName());
         }
         s.setModel(model);
     }
     
     
   public String selectedRow(JTable table, JTextField name, JTextField lastName, String picture, JComboBox id_party) {
-  String imagen = "";  // Nuevo String para almacenar la ruta de la imagen
+  String imagen = "";  // Holds the picture route
     try {
         int row = table.getSelectedRow();
         if (row >= 0) {

@@ -138,6 +138,11 @@ public class frmAdmin extends javax.swing.JFrame {
 
         cbxPartyCandidates.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbxPartyCandidates.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxPartyCandidates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxPartyCandidatesActionPerformed(evt);
+            }
+        });
         jPanel9.add(cbxPartyCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 180, -1));
 
         txtNameCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -416,6 +421,10 @@ public class frmAdmin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblCandidatesMouseClicked
 
+    private void cbxPartyCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPartyCandidatesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxPartyCandidatesActionPerformed
+
     public void chargetableCandidates() {
         ctrlc.loadDataCandidates(tblCandidates);
     }
@@ -426,8 +435,8 @@ public class frmAdmin extends javax.swing.JFrame {
     }
 
     public void loadCbxCandidatesParty() {
-        this.ctrlc.getIdParty(cbxPartyCandidates);
-        this.ctrlc.loadParty(cbxPartyCandidates);
+        this.ctrlc.getIDCandidate(cbxPartyCandidates);
+        this.ctrlc.loadCandidate(cbxPartyCandidates);
 
     }
 
