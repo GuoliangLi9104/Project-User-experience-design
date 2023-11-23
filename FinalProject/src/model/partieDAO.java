@@ -4,34 +4,30 @@
  */
 package model;
 
-import java.io.ByteArrayInputStream;
-import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-
+import model.partie;
 /**
  *
- * @author JRS
+ * @author Li
  */
-public class candidateDAO {
-    
-     public candidateDAO() {
-    }
+public class partieDAO {
 
-    public void createCandidate(candidate Candidate) {
+    public partieDAO() {
+    }
+   
+    
+    public void create(partie Partie) {
 
         DBConnectionJava db = new DBConnectionJava();
-        String consultaSQL = "INSERT INTO candidates (name, lastName, picture, id_party) VALUES (?, ?, ?, ?)";
+        String consultaSQL = "INSERT INTO parties (name) VALUES (?)";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
-            ps.setString(1, Candidate.getName());
-            ps.setString(2, Candidate.getLastName());
-            ps.setString(3, Candidate.getPicture());
-            ps.setInt(4, Candidate.getId_party());
+            ps.setString(1, Partie.getName());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Se insertó correctamente el candidato");
         } catch (SQLException e) {
@@ -41,9 +37,9 @@ public class candidateDAO {
         }
     }
 
-  public List<candidate> readCandidate() {
+  public List<partie> readParties() {
     DBConnectionJava db = new DBConnectionJava();
-    List<candidate> candidates = new ArrayList<>();
+    List<partie> Partie = new ArrayList<>();
     String sql = "SELECT * FROM canditates";
 
     try {
@@ -52,31 +48,24 @@ public class candidateDAO {
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String name = resultSet.getString("name");
-            String lastName = resultSet.getString("lastName");
-            String picture = resultSet.getString("picture");
-            int id_party = resultSet.getInt("id_party");
-
-            candidates.add(new candidate(id, name, lastName, picture, id_party));
+            Partie.add(new partie(id, name));
         }
     } catch (SQLException e) {
         System.err.println("Error: " + e.getMessage());
     } finally {
         db.disconnect();
     }
-    return candidates;
+    return Partie;
 }
 
-  public void updateCandidate(candidate Candidate) {
+  public void updateParties(partie Parties) {
     DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE candidates SET name=?, lastName=?, picture=?, id_party=? WHERE id=?";
+    String consultaSQL = "UPDATE parties SET name=? WHERE id=?";
     
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
-        ps.setString(1, Candidate.getName());
-        ps.setString(2, Candidate.getLastName());
-        ps.setString(3, Candidate.getPicture());
-        ps.setInt(4, Candidate.getId_party());
-        ps.setInt(5, Candidate.getId());
+        ps.setString(1, Parties.getName());
+        ps.setInt(2, Parties.getId());
         ps.execute();
         JOptionPane.showMessageDialog(null, "Modificación Exitosa");
     } catch (SQLException e) {
@@ -86,11 +75,11 @@ public class candidateDAO {
     }
 }
 
-    public void deleteCandidate(int id) {
+    public void deleteParties(int id) {
 
         DBConnectionJava db = new DBConnectionJava();
 
-        String consultaSQL = "DELETE FROM candidates WHERE id=?";
+        String consultaSQL = "DELETE FROM parties WHERE id=?";
 
         try {
             PreparedStatement preparedStatement = db.getConnection().prepareStatement(consultaSQL);
@@ -106,4 +95,43 @@ public class candidateDAO {
         }
         
     }
+    
+    public int getIDParty(String name) {
+        int value = 0;
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT id FROM parties WHERE name = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
+    }
+
+    public String getNameParty(int id) {
+        String value = "";
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT name FROM parties WHERE id = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
+    }
+    
 }

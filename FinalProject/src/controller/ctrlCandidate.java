@@ -14,41 +14,45 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.sql.Blob;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import model.*;
 
 /**
  *
  * @author JRS
  */
 public class ctrlCandidate {
-    private candidateDAO dao = new candidateDAO();
-    private int id;
+    private candidateDAO daoCandi = new candidateDAO();
+    private partieDAO daoParty = new partieDAO();
+    private int id, partyID;
 
     public void loadDataCandidates(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         TableRowSorter<TableModel> order = new TableRowSorter<TableModel>(model);
         table.setRowSorter(order);
         model.setRowCount(0);
-        List<candidate> candidates = dao.read();
+        List<candidate> candidates = daoCandi.readCandidate();
         for (candidate Candidate : candidates) {
             Object[] row = {Candidate.getId(), Candidate.getName(), Candidate.getLastName(), Candidate.getPicture(), Candidate.getId_party()};
             model.addRow(row);
         }
     }
 
-    public void addCandidate(JTextField name, JTextField lastName, Blob picture, JTextField id_party) {
+    public void addCandidate(JTextField name, JTextField lastName, String picture, JTextField id_party) {
         try {
-            this.dao.create(new candidate(0, name.getText(), lastName.getText(), picture, Integer.parseInt(id_party.getText())));
+            this.daoCandi.createCandidate(new candidate(0, name.getText(), lastName.getText(), picture, Integer.parseInt(id_party.getText())));
             JOptionPane.showMessageDialog(null, "Candidato agregado con éxito");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error en el formato de datos: " + e.toString());
         }
     }
 
-    public void updateCandidate(JTextField name, JTextField lastName, Blob picture, JTextField id_party) {
+    public void updateCandidate(JTextField name, JTextField lastName, String picture, JTextField id_party) {
         try {
-            this.dao.update(new candidate(this.id, name.getText(), lastName.getText(), picture, Integer.parseInt(id_party.getText())));
+            this.daoCandi.updateCandidate(new candidate(this.id, name.getText(), lastName.getText(), picture, Integer.parseInt(id_party.getText())));
             JOptionPane.showMessageDialog(null, "Candidato actualizado con éxito");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error en el formato de datos: " + e.toString());
@@ -56,29 +60,40 @@ public class ctrlCandidate {
     }
 
     public void deleteCandidate() {
-        this.dao.delete(this.id);
+        this.daoCandi.deleteCandidate(this.id);
     }
 
-  public void selectedRow(JTable table, JTextField name, JTextField lastName, JLabel picture, JTextField id_party) {
+    public void getIdParty(JComboBox Party) {
+        this.partyID = this.daoParty.getIDParty(Party.getSelectedItem().toString());
+    }
+
+    public void loadParty(JComboBox s) {
+        List<partie> parties = this.daoParty.readParties();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (partie Party : parties) {
+            model.addElement(Party.getName());
+        }
+        s.setModel(model);
+    }
+    
+    
+  public String selectedRow(JTable table, JTextField name, JTextField lastName, String picture, JComboBox id_party) {
+  String imagen = "";  // Nuevo String para almacenar la ruta de la imagen
     try {
         int row = table.getSelectedRow();
         if (row >= 0) {
             this.id = Integer.parseInt(table.getValueAt(row, 0).toString());
             name.setText(table.getValueAt(row, 1).toString());
             lastName.setText(table.getValueAt(row, 2).toString());
-            id_party.setText(table.getValueAt(row, 4).toString());
-            
-            // Gets the picture Blob from the database and shows it in the view
-            Blob pictureBlob = (Blob) table.getValueAt(row, 3); 
-            byte[] pictureBytes = pictureBlob.getBytes(1, (int) pictureBlob.length());
-            ImageIcon imageIcon = new ImageIcon(pictureBytes);
-            picture.setIcon(imageIcon);
+            imagen = table.getValueAt(row, 3).toString();
+            id_party.setSelectedItem(table.getValueAt(row, 4).toString());
         } else {
             JOptionPane.showMessageDialog(null, "Fila no seleccionada");
         }
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.toString());
     }
+    return imagen;  // Devuelve la ruta de la imagen
 }
 
     public void clearFields(JTextField name, JTextField lastName, JTextField id_party) {

@@ -11,11 +11,10 @@ import java.sql.Blob;
 public class candidate {
 
     private int id;
-    private String name, lastName;
+    private String name, lastName, picture;
     private int id_party;
-    private Blob picture;
     
-    public candidate(int id, String name, String lastName, Blob picture, int id_party) {
+    public candidate(int id, String name, String lastName, String picture, int id_party) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -85,17 +84,13 @@ public class candidate {
         this.id_party = id_party;
     }
 
-    /**
-     * @return the picture
-     */
-    public Blob getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    /**
-     * @param picture the picture to set
-     */
-    public void setPicture(Blob picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
+
+ 
 }
