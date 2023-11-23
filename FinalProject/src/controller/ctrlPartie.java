@@ -40,18 +40,18 @@ import javax.swing.table.TableRowSorter;
     public void addPartie(JTextField name, JTextField id_candidate) {
         try {
             this.daoPartie.create(new partie(0, name.getText(), Integer.parseInt(id_candidate.getText())));
-            JOptionPane.showMessageDialog(null, "Partie added successfully");
+            JOptionPane.showMessageDialog(null, "Partido añadido exitosamente");
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error in data format: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error de formato: " + e.toString());
         }
     }
 
     public void updatePartie(JTextField name, JTextField id_candidate) {
         try {
             this.daoPartie.updateParties(new partie(this.id, name.getText(), Integer.parseInt(id_candidate.getText())));
-            JOptionPane.showMessageDialog(null, "Partie updated successfully");
+            JOptionPane.showMessageDialog(null, "Partido modificado exitosamente");
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error in data format: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error de formato: " + e.toString());
         }
     }
 
@@ -80,12 +80,12 @@ import javax.swing.table.TableRowSorter;
                 name.setText(table.getValueAt(row, 1).toString());
                 id_candidate.setText(table.getValueAt(row, 2).toString());
             } else {
-                JOptionPane.showMessageDialog(null, "Row not selected");
+                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Selection error, error: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error de seleccion : " + e.toString());
         }
-        return "";  // Return the picture path (not handled in this code)
+        return "";  
     }
 
     public void clearFields(JTextField name, JTextField id_candidate) {
