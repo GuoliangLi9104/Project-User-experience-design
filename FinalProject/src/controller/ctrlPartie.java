@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.partie;
-import model.partieDAO;
+import model.*;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -22,6 +22,7 @@ import javax.swing.table.TableRowSorter;
  */
     public class ctrlPartie {
     private partieDAO daoPartie = new partieDAO();
+    private candidateDAO canditateDAO = new candidateDAO();
     private int id, partieID;
    
 
@@ -32,7 +33,7 @@ import javax.swing.table.TableRowSorter;
         model.setRowCount(0);
         List<partie> parties = daoPartie.readParties();
         for (partie partie : parties) {
-            Object[] row = {partie.getId(), partie.getName(), partie.getId_candidate()};
+            Object[] row = {partie.getId(), partie.getName()};
             model.addRow(row);
         }
     }

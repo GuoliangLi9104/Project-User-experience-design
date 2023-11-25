@@ -23,7 +23,8 @@ import model.*;
  */
 public class ctrlCandidate {
     private candidateDAO daoCandi = new candidateDAO();
-    private int id, candidateID;
+    private partieDAO partiDAO = new partieDAO();
+    private int id, candidateID, partyID;
 
     public void loadDataCandidates(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -32,23 +33,23 @@ public class ctrlCandidate {
         model.setRowCount(0);
         List<candidate> candidates = daoCandi.readCandidate();
         for (candidate Candidate : candidates) {
-            Object[] row = {Candidate.getId(), Candidate.getName(), Candidate.getLastName(), Candidate.getPicture(), Candidate.getId_party()};
+            Object[] row = {Candidate.getId(), Candidate.getName(), Candidate.getLastName(), Candidate.getPicture(), this.partiDAO.getNameParty(Candidate.getId_party())};
             model.addRow(row);
         }
     }
 
-    public void addCandidate(JTextField name, JTextField lastName, String picture, JTextField id_party) {
+    public void addCandidate(JTextField name, JTextField lastName, String picture,JComboBox id_party) {
         try {
-            this.daoCandi.createCandidate(new candidate(0, name.getText(), lastName.getText(), picture, Integer.parseInt(id_party.getText())));
+            this.daoCandi.createCandidate(new candidate(0, name.getText(), lastName.getText(), picture, this.partyID));
             JOptionPane.showMessageDialog(null, "Candidato agregado con éxito");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error en el formato de datos: " + e.toString());
         }
     }
 
-    public void updateCandidate(JTextField name, JTextField lastName, String picture, JTextField id_party) {
+    public void updateCandidate(JTextField name, JTextField lastName, String picture, JComboBox id_party) {
         try {
-            this.daoCandi.updateCandidate(new candidate(this.id, name.getText(), lastName.getText(), picture, Integer.parseInt(id_party.getText())));
+            this.daoCandi.updateCandidate(new candidate(this.id, name.getText(), lastName.getText(), picture, this.partyID));
             JOptionPane.showMessageDialog(null, "Candidato actualizado con éxito");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error en el formato de datos: " + e.toString());
@@ -95,6 +96,5 @@ public class ctrlCandidate {
     public void clearFields(JTextField name, JTextField lastName, JTextField id_party) {
         name.setText("");
         lastName.setText("");
-        id_party.setText("");
     }
 }

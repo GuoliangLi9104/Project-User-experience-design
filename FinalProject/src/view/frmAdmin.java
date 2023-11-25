@@ -27,8 +27,8 @@ public class frmAdmin extends javax.swing.JFrame {
      */
     public frmAdmin() {
         initComponents();
-        this.chargetableAll();
         this.loadCbxCandidatesParty();
+        this.chargetableAll();
     }
 
     /**
@@ -139,6 +139,11 @@ public class frmAdmin extends javax.swing.JFrame {
 
         cbxCanditatesParty.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbxCanditatesParty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCanditatesParty.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxCanditatesPartyItemStateChanged(evt);
+            }
+        });
         cbxCanditatesParty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCanditatesPartyActionPerformed(evt);
@@ -185,9 +190,19 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel10.add(btnDeleteCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 80, -1));
 
         btnModifyCandidates.setText("Modificar");
+        btnModifyCandidates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyCandidatesActionPerformed(evt);
+            }
+        });
         jPanel10.add(btnModifyCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         btnCreateCandidates.setText("Agregar");
+        btnCreateCandidates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateCandidatesActionPerformed(evt);
+            }
+        });
         jPanel10.add(btnCreateCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, -1));
 
         jPanel5.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 100, 120));
@@ -261,12 +276,27 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
 
         btnCreateVoters.setText("Agregar");
+        btnCreateVoters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateVotersActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnCreateVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
 
         btnDeleteVoters.setText("Eliminar");
+        btnDeleteVoters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteVotersActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnDeleteVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
 
         btnModifyVoters.setText("Modificar");
+        btnModifyVoters.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyVotersActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnModifyVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -357,7 +387,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         txtNameParty.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel8.add(txtNameParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
+        jPanel8.add(txtNameParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 520, -1));
 
         tblTableParty.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -380,12 +410,27 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel8.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
 
         btnCreateParty.setText("Agregar");
+        btnCreateParty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreatePartyActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnCreateParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
 
         btnDeleteParty.setText("Eliminar");
+        btnDeleteParty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePartyActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnDeleteParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
 
         btnModifyParty.setText("Modificar");
+        btnModifyParty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyPartyActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnModifyParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -410,7 +455,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("C:\\Music\\Project-User-experience-design\\FinalProject\\Imagenes"));
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\Li\\Music\\Project-User-experience-design\\FinalProject\\Imagenes"));
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             String imageName = "Imagenes/" + fileChooser.getSelectedFile().getName();
@@ -420,7 +465,7 @@ public class frmAdmin extends javax.swing.JFrame {
     private void tblCandidatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCandidatesMouseClicked
         String imagen = "";
         imagen = ctrlc.selectedRow(tblCandidates, txtNameCandi, txtLastNameCandi, imagen, cbxCanditatesParty);
-        imagenIcon(imagen);
+        this.imagenIcon(imagen);
     }//GEN-LAST:event_tblCandidatesMouseClicked
 
     private void cbxCanditatesPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCanditatesPartyActionPerformed
@@ -435,6 +480,50 @@ public class frmAdmin extends javax.swing.JFrame {
         ctrlp.selectedRow(tblTableParty, txtNameParty);
     }//GEN-LAST:event_tblTablePartyMouseClicked
 
+    private void cbxCanditatesPartyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCanditatesPartyItemStateChanged
+        this.ctrlp.getIdParty(cbxCanditatesParty);
+    }//GEN-LAST:event_cbxCanditatesPartyItemStateChanged
+
+    private void btnCreateCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCandidatesActionPerformed
+        String picture = getCurrentImageName();
+        ctrlc.addCandidate(txtNameCandi, txtLastNameCandi, picture, cbxCanditatesParty);
+    }//GEN-LAST:event_btnCreateCandidatesActionPerformed
+
+    private void btnModifyCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyCandidatesActionPerformed
+
+
+    }//GEN-LAST:event_btnModifyCandidatesActionPerformed
+
+    private void btnCreateVotersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVotersActionPerformed
+       ctrlVoter.addVoter(txtIDVoters, txtNameVoters, txtLastNameVoters, txtVoteVoters);
+       ctrlVoter.loadDataVoters(tblTableVoters);
+    }//GEN-LAST:event_btnCreateVotersActionPerformed
+
+    private void btnModifyVotersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyVotersActionPerformed
+        ctrlVoter.updateVoter(txtIDVoters, txtNameVoters, txtLastNameVoters, txtVoteVoters);
+        ctrlVoter.loadDataVoters(tblTableVoters);
+    }//GEN-LAST:event_btnModifyVotersActionPerformed
+
+    private void btnDeleteVotersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVotersActionPerformed
+        ctrlVoter.deleteVoter();
+        ctrlVoter.loadDataVoters(tblTableVoters);
+    }//GEN-LAST:event_btnDeleteVotersActionPerformed
+
+    private void btnCreatePartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePartyActionPerformed
+        ctrlp.addPartie(txtNameParty);
+        ctrlp.loadDataParties(tblTableParty);
+    }//GEN-LAST:event_btnCreatePartyActionPerformed
+
+    private void btnModifyPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPartyActionPerformed
+       ctrlp.updatePartie(txtNameParty);
+        ctrlp.loadDataParties(tblTableParty);
+    }//GEN-LAST:event_btnModifyPartyActionPerformed
+
+    private void btnDeletePartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePartyActionPerformed
+        ctrlp.deletePartie();
+        ctrlp.loadDataParties(tblTableParty);
+    }//GEN-LAST:event_btnDeletePartyActionPerformed
+
     public void chargetableAll() {
         ctrlc.loadDataCandidates(tblCandidates);
         ctrlVote.loadDataVotes(tblTableVote);
@@ -445,12 +534,16 @@ public class frmAdmin extends javax.swing.JFrame {
     public void imagenIcon(String name) {
         ImageIcon Imagen = new ImageIcon(name);
         this.lblImagenCandi.setIcon(Imagen);
+        this.lblImagenCandi.putClientProperty("nameImagen", name);
     }
 
     public void loadCbxCandidatesParty() {
-        this.ctrlp.loadParty(cbxCanditatesParty);
         this.ctrlp.getIdParty(cbxCanditatesParty);
+        this.ctrlp.loadParty(cbxCanditatesParty);
+    }
 
+    public String getCurrentImageName() {
+        return (String) this.lblImagenCandi.getClientProperty("nameImagen");
     }
 
     /**

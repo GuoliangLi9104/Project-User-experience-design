@@ -13,13 +13,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Vote;
-import model.VoteDAO;
+import model.*;
 /**
  *
  * @author JRS
  */
 public class ctrlVote {
     private VoteDAO daoVote = new VoteDAO();
+    private partieDAO partiDAO = new partieDAO();
+    private VotersDAO votersDAO = new VotersDAO();
     private int id, voteID;
 
     public void loadDataVotes(JTable table) {
@@ -29,7 +31,7 @@ public class ctrlVote {
         model.setRowCount(0);
         List<Vote> votesList = daoVote.readVote();
         for (Vote vote : votesList) {
-            Object[] row = {vote.getId(), vote.getIDVoter(), vote.getIDParty(), vote.getIDVote()};
+            Object[] row = {vote.getId(), this.votersDAO.getNameVoters(vote.getIDVoter()), this.partiDAO.getNameParty(vote.getIDParty()), vote.getIDVote()};
             model.addRow(row);
         }
     }

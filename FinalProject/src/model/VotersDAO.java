@@ -20,8 +20,8 @@ public class VotersDAO {
 
     public VotersDAO() {
     }
-    
-     public void createVoters(Voters voters) {
+
+    public void createVoters(Voters voters) {
 
         DBConnectionJava db = new DBConnectionJava();
         String consultaSQL = "INSERT INTO voters (idNumber, name, lastName, vote) VALUES (?, ?, ?, ?)";
@@ -40,49 +40,50 @@ public class VotersDAO {
         }
     }
 
-  public List<Voters> readVoters() {
-    DBConnectionJava db = new DBConnectionJava();
-    List<Voters> Voter = new ArrayList<>();
-    String sql = "SELECT * FROM voters";
+    public List<Voters> readVoters() {
+        DBConnectionJava db = new DBConnectionJava();
+        List<Voters> Voter = new ArrayList<>();
+        String sql = "SELECT * FROM voters";
 
-    try {
-        PreparedStatement ps = db.getConnection().prepareStatement(sql);
-        ResultSet resultSet = ps.executeQuery();
-        while (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            int idNumber = resultSet.getInt("idNumber");
-            String name = resultSet.getString("name");
-            String lastName = resultSet.getString("lastName");
-            int vote = resultSet.getInt("vote");
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idNumber = resultSet.getInt("idNumber");
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastName");
+                int vote = resultSet.getInt("vote");
 
-            Voter.add(new Voters(id,idNumber, name, lastName, vote));
+                Voter.add(new Voters(id, idNumber, name, lastName, vote));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
         }
-    } catch (SQLException e) {
-        System.err.println("Error: " + e.getMessage());
-    } finally {
-        db.disconnect();
+        return Voter;
     }
-    return Voter;
-}
 
-  public void updateVoters(Voters voters) {
-    DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE voters SET idNumber=?,name=?, lastName=?, vote=? WHERE id=?";
-    
-    try {
-        PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
-        ps.setInt(1, voters.getIDNumber());
-        ps.setString(1, voters.getName());
-        ps.setString(2, voters.getLastName());
-        ps.setInt(4, voters.getVote());
-        ps.execute();
-        JOptionPane.showMessageDialog(null, "Modificación Exitosa");
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "No se modificó, error: " + e.toString());
-    } finally {
-        db.disconnect();
+    public void updateVoters(Voters voters) {
+        DBConnectionJava db = new DBConnectionJava();
+        String consultaSQL = "UPDATE voters SET idNumber=?,name=?, lastName=?,vote=? WHERE id=?";
+
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
+            ps.setInt(1, voters.getIDNumber());
+            ps.setString(2, voters.getName());
+            ps.setString(3, voters.getLastName());
+            ps.setInt(4, voters.getVote());
+            ps.setInt(5, voters.getId());
+            ps.execute();
+            JOptionPane.showMessageDialog(null, "Modificación Exitosa");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se modificó, error: " + e.toString());
+        } finally {
+            db.disconnect();
+        }
     }
-}
 
     public void deleteVoters(int id) {
 
@@ -99,13 +100,13 @@ public class VotersDAO {
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, "No se pudo eliminar, error: " + e.toString());
-        }finally {
+        } finally {
             db.disconnect();
         }
-        
+
     }
-    
-     public int getIDVoters(String name) {
+
+    public int getIDVoters(String name) {
         int value = 0;
         DBConnectionJava db = new DBConnectionJava();
         String sql = "SELECT id FROM voters WHERE name = ?";
