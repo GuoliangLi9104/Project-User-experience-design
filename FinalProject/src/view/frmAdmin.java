@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.ctrlCandidate;
+import controller.*;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -18,13 +18,16 @@ import model.*;
 public class frmAdmin extends javax.swing.JFrame {
 
     ctrlCandidate ctrlc = new ctrlCandidate();
+    ctrlPartie ctrlp = new ctrlPartie();
+    ctrlVote ctrlVote = new ctrlVote();
+    ctrlVoters ctrlVoter = new ctrlVoters();
 
     /**
      * Creates new form frmAdmin
      */
     public frmAdmin() {
         initComponents();
-        this.chargetableCandidates();
+        this.chargetableAll();
         this.loadCbxCandidatesParty();
     }
 
@@ -46,7 +49,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         lblImagenCandi = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        cbxPartyCandidates = new javax.swing.JComboBox<>();
+        cbxCanditatesParty = new javax.swing.JComboBox<>();
         txtNameCandi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -68,7 +71,7 @@ public class frmAdmin extends javax.swing.JFrame {
         txtIDVoters = new javax.swing.JTextField();
         txtVoteVoters = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblTableVoters = new javax.swing.JTable();
         btnCreateVoters = new javax.swing.JButton();
         btnDeleteVoters = new javax.swing.JButton();
         btnModifyVoters = new javax.swing.JButton();
@@ -80,19 +83,17 @@ public class frmAdmin extends javax.swing.JFrame {
         cbxNameVotes = new javax.swing.JComboBox<>();
         cbxPartyVotes = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblTableVote = new javax.swing.JTable();
         btnCreateVote = new javax.swing.JButton();
         btnDeleteVotes = new javax.swing.JButton();
         btnModifyVotes = new javax.swing.JButton();
         txtVotesVotes = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtLastNameCandi1 = new javax.swing.JTextField();
-        txtNameCandi1 = new javax.swing.JTextField();
+        txtNameParty = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tblTableParty = new javax.swing.JTable();
         btnCreateParty = new javax.swing.JButton();
         btnDeleteParty = new javax.swing.JButton();
         btnModifyParty = new javax.swing.JButton();
@@ -129,42 +130,42 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel9.add(lblImagenCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 170, 150));
+        jPanel9.add(lblImagenCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 170, 150));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Imagen:");
-        jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+        jPanel9.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
 
-        cbxPartyCandidates.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        cbxPartyCandidates.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxPartyCandidates.addActionListener(new java.awt.event.ActionListener() {
+        cbxCanditatesParty.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        cbxCanditatesParty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCanditatesParty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxPartyCandidatesActionPerformed(evt);
+                cbxCanditatesPartyActionPerformed(evt);
             }
         });
-        jPanel9.add(cbxPartyCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 180, -1));
+        jPanel9.add(cbxCanditatesParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 290, -1));
 
         txtNameCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel9.add(txtNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 180, -1));
+        jPanel9.add(txtNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nombre:");
-        jPanel9.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        jPanel9.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Partido:");
-        jPanel9.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jPanel9.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Apellido:");
-        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+        jPanel9.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         txtLastNameCandi.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel9.add(txtLastNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 290, -1));
+        jPanel9.add(txtLastNameCandi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 270, -1));
 
         jButton1.setText("+");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +173,7 @@ public class frmAdmin extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel9.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
+        jPanel9.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 40, 40));
 
         jPanel5.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 650, 240));
 
@@ -189,7 +190,7 @@ public class frmAdmin extends javax.swing.JFrame {
         btnCreateCandidates.setText("Agregar");
         jPanel10.add(btnCreateCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, -1));
 
-        jPanel5.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 100, 110));
+        jPanel5.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 100, 120));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -239,18 +240,23 @@ public class frmAdmin extends javax.swing.JFrame {
         txtVoteVoters.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPanel6.add(txtVoteVoters, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 180, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblTableVoters.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Apellido", "Cedula", "Voto"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        tblTableVoters.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTableVotersMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblTableVoters);
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
 
@@ -302,7 +308,7 @@ public class frmAdmin extends javax.swing.JFrame {
         cbxPartyVotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel7.add(cbxPartyVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, -1));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblTableVote.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -313,7 +319,7 @@ public class frmAdmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tblTableVote);
 
         jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
 
@@ -345,34 +351,31 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Candidato:");
-        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
-
         jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Nombre:");
         jPanel8.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        txtLastNameCandi1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel8.add(txtLastNameCandi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 290, -1));
+        txtNameParty.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel8.add(txtNameParty, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
 
-        txtNameCandi1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jPanel8.add(txtNameCandi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, -1));
-
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tblTableParty.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        tblTableParty.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTablePartyMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblTableParty);
 
         jPanel8.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
 
@@ -416,17 +419,27 @@ public class frmAdmin extends javax.swing.JFrame {
     }
     private void tblCandidatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCandidatesMouseClicked
         String imagen = "";
-        imagen = ctrlc.selectedRow(tblCandidates, txtNameCandi, txtLastNameCandi, imagen, cbxPartyCandidates);
+        imagen = ctrlc.selectedRow(tblCandidates, txtNameCandi, txtLastNameCandi, imagen, cbxCanditatesParty);
         imagenIcon(imagen);
-
     }//GEN-LAST:event_tblCandidatesMouseClicked
 
-    private void cbxPartyCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPartyCandidatesActionPerformed
+    private void cbxCanditatesPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCanditatesPartyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxPartyCandidatesActionPerformed
+    }//GEN-LAST:event_cbxCanditatesPartyActionPerformed
 
-    public void chargetableCandidates() {
+    private void tblTableVotersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTableVotersMouseClicked
+        ctrlVoter.selectedRow(tblTableVoters, txtNameVoters, txtLastNameVoters, txtIDVoters, txtVoteVoters);
+    }//GEN-LAST:event_tblTableVotersMouseClicked
+
+    private void tblTablePartyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablePartyMouseClicked
+        ctrlp.selectedRow(tblTableParty, txtNameParty);
+    }//GEN-LAST:event_tblTablePartyMouseClicked
+
+    public void chargetableAll() {
         ctrlc.loadDataCandidates(tblCandidates);
+        ctrlVote.loadDataVotes(tblTableVote);
+        ctrlp.loadDataParties(tblTableParty);
+        ctrlVoter.loadDataVoters(tblTableVoters);
     }
 
     public void imagenIcon(String name) {
@@ -435,8 +448,8 @@ public class frmAdmin extends javax.swing.JFrame {
     }
 
     public void loadCbxCandidatesParty() {
-        this.ctrlc.getIDCandidate(cbxPartyCandidates);
-        this.ctrlc.loadCandidate(cbxPartyCandidates);
+        this.ctrlp.loadParty(cbxCanditatesParty);
+        this.ctrlp.getIdParty(cbxCanditatesParty);
 
     }
 
@@ -490,8 +503,8 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnModifyParty;
     private javax.swing.JButton btnModifyVoters;
     private javax.swing.JButton btnModifyVotes;
+    private javax.swing.JComboBox<String> cbxCanditatesParty;
     private javax.swing.JComboBox<String> cbxNameVotes;
-    private javax.swing.JComboBox<String> cbxPartyCandidates;
     private javax.swing.JComboBox<String> cbxPartyVotes;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -501,7 +514,6 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -518,21 +530,20 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JLabel lblIDVoters;
     private javax.swing.JLabel lblImagenCandi;
     private javax.swing.JLabel lblLastNameVoters;
     private javax.swing.JLabel lblNameVoters;
     private javax.swing.JLabel lblVoteVoters;
     private javax.swing.JTable tblCandidates;
+    private javax.swing.JTable tblTableParty;
+    private javax.swing.JTable tblTableVote;
+    private javax.swing.JTable tblTableVoters;
     private javax.swing.JTextField txtIDVoters;
     private javax.swing.JTextField txtLastNameCandi;
-    private javax.swing.JTextField txtLastNameCandi1;
     private javax.swing.JTextField txtLastNameVoters;
     private javax.swing.JTextField txtNameCandi;
-    private javax.swing.JTextField txtNameCandi1;
+    private javax.swing.JTextField txtNameParty;
     private javax.swing.JTextField txtNameVoters;
     private javax.swing.JTextField txtVoteVoters;
     private javax.swing.JTextField txtVotesVotes;

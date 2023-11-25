@@ -25,7 +25,7 @@ public class candidateDAO {
     public void createCandidate(candidate Candidate) {
 
         DBConnectionJava db = new DBConnectionJava();
-        String consultaSQL = "INSERT INTO candidates (name, lastName, picture, id_party) VALUES (?, ?, ?, ?)";
+        String consultaSQL = "INSERT INTO canditates (name, lastName, picture, id_party) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
             ps.setString(1, Candidate.getName());
@@ -68,7 +68,7 @@ public class candidateDAO {
 
   public void updateCandidate(candidate Candidate) {
     DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE candidates SET name=?, lastName=?, picture=?, id_party=? WHERE id=?";
+    String consultaSQL = "UPDATE canditates SET name=?, lastName=?, picture=?, id_party=? WHERE id=?";
     
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
@@ -88,7 +88,7 @@ public class candidateDAO {
   public int getIDCandidate(String name) {
         int value = 0;
         DBConnectionJava db = new DBConnectionJava();
-        String sql = "SELECT id FROM candidates WHERE name = ?";
+        String sql = "SELECT id FROM canditates WHERE name = ?";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(sql);
             ps.setString(1, name);
@@ -107,7 +107,7 @@ public class candidateDAO {
     public String getNameCandidate(int id) {
         String value = "";
         DBConnectionJava db = new DBConnectionJava();
-        String sql = "SELECT name FROM candidates WHERE id = ?";
+        String sql = "SELECT name FROM canditates WHERE id = ?";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
@@ -127,7 +127,7 @@ public class candidateDAO {
 
         DBConnectionJava db = new DBConnectionJava();
 
-        String consultaSQL = "DELETE FROM candidates WHERE id=?";
+        String consultaSQL = "DELETE FROM canditates WHERE id=?";
 
         try {
             PreparedStatement preparedStatement = db.getConnection().prepareStatement(consultaSQL);

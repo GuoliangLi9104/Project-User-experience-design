@@ -37,18 +37,18 @@ import javax.swing.table.TableRowSorter;
         }
     }
 
-    public void addPartie(JTextField name, JTextField id_candidate) {
+    public void addPartie(JTextField name) {
         try {
-            this.daoPartie.create(new partie(0, name.getText(), Integer.parseInt(id_candidate.getText())));
+            this.daoPartie.create(new partie(0, name.getText()));
             JOptionPane.showMessageDialog(null, "Partido añadido exitosamente");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error de formato: " + e.toString());
         }
     }
 
-    public void updatePartie(JTextField name, JTextField id_candidate) {
+    public void updatePartie(JTextField name) {
         try {
-            this.daoPartie.updateParties(new partie(this.id, name.getText(), Integer.parseInt(id_candidate.getText())));
+            this.daoPartie.updateParties(new partie(this.id, name.getText()));
             JOptionPane.showMessageDialog(null, "Partido modificado exitosamente");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error de formato: " + e.toString());
@@ -72,13 +72,12 @@ import javax.swing.table.TableRowSorter;
         s.setModel(model);
     }
 
-    public String selectedRow(JTable table, JTextField name, JTextField id_candidate) {
+    public String selectedRow(JTable table, JTextField name) {
         try {
             int row = table.getSelectedRow();
             if (row >= 0) {
                 this.id = Integer.parseInt(table.getValueAt(row, 0).toString());
                 name.setText(table.getValueAt(row, 1).toString());
-                id_candidate.setText(table.getValueAt(row, 2).toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Fila no seleccionada");
             }

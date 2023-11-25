@@ -55,11 +55,11 @@ public class ctrlVoters {
     }
 
     public void deleteVoter() {
-        this.daoVoters.delete(this.id);
+        this.daoVoters.deleteVoters(this.id);
     }
 
     public void getIDVoter(JComboBox voter) {
-        this.voterID = this.daoVoters.getIDVoter(voter.getSelectedItem().toString());
+        this.voterID = this.daoVoters.getIDVoters(voter.getSelectedItem().toString());
     }
 
     public void loadVoter(JComboBox s) {

@@ -40,7 +40,7 @@ public class partieDAO {
   public List<partie> readParties() {
     DBConnectionJava db = new DBConnectionJava();
     List<partie> Partie = new ArrayList<>();
-    String sql = "SELECT * FROM canditates";
+    String sql = "SELECT * FROM parties";
 
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(sql);

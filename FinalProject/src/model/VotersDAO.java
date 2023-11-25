@@ -24,7 +24,7 @@ public class VotersDAO {
      public void createVoters(Voters voters) {
 
         DBConnectionJava db = new DBConnectionJava();
-        String consultaSQL = "INSERT INTO voter (idNumber, name, lastName, vote) VALUES (?, ?, ?, ?)";
+        String consultaSQL = "INSERT INTO voters (idNumber, name, lastName, vote) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
             ps.setInt(1, voters.getIDNumber());
@@ -43,7 +43,7 @@ public class VotersDAO {
   public List<Voters> readVoters() {
     DBConnectionJava db = new DBConnectionJava();
     List<Voters> Voter = new ArrayList<>();
-    String sql = "SELECT * FROM voter";
+    String sql = "SELECT * FROM voters";
 
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
@@ -67,7 +67,7 @@ public class VotersDAO {
 
   public void updateVoters(Voters voters) {
     DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE voter SET idNumber=?,name=?, lastName=?, vote=? WHERE id=?";
+    String consultaSQL = "UPDATE voters SET idNumber=?,name=?, lastName=?, vote=? WHERE id=?";
     
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
@@ -84,11 +84,11 @@ public class VotersDAO {
     }
 }
 
-    public void delete(int id) {
+    public void deleteVoters(int id) {
 
         DBConnectionJava db = new DBConnectionJava();
 
-        String consultaSQL = "DELETE FROM candidates WHERE id=?";
+        String consultaSQL = "DELETE FROM voters WHERE id=?";
 
         try {
             PreparedStatement preparedStatement = db.getConnection().prepareStatement(consultaSQL);
@@ -103,5 +103,43 @@ public class VotersDAO {
             db.disconnect();
         }
         
+    }
+    
+     public int getIDVoters(String name) {
+        int value = 0;
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT id FROM voters WHERE name = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
+    }
+
+    public String getNameVoters(int id) {
+        String value = "";
+        DBConnectionJava db = new DBConnectionJava();
+        String sql = "SELECT name FROM voters WHERE id = ?";
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                value = resultSet.getString("name");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+        return value;
     }
 }
