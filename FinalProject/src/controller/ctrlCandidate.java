@@ -4,9 +4,16 @@
  */
 package controller;
 
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.net.URL;
 import model.candidate;
 import model.candidateDAO;
 import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -14,7 +21,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import model.*;
 
 /**
@@ -64,6 +77,10 @@ public class ctrlCandidate {
         this.candidateID = this.daoCandi.getIDCandidate(candidate.getSelectedItem().toString());
     }
 
+      public void getIdParty(JComboBox Party) {
+        this.partyID = this.partiDAO.getIDParty(Party.getSelectedItem().toString());
+    }
+    
     public void loadCandidate(JComboBox s) {
         List<candidate> candidates = this.daoCandi.readCandidate();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -97,4 +114,74 @@ public class ctrlCandidate {
         name.setText("");
         lastName.setText("");
     }
+    
+      public void displayCanditates(JScrollPane scrollPane) {
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        List<candidate> candidates = daoCandi.readCandidate();
+        
+        for (candidate Candidate : candidates) {
+            JPanel canditatePanel = new JPanel();
+            canditatePanel.setPreferredSize(new Dimension(300, 200));
+            canditatePanel.setBorder(BorderFactory.createTitledBorder(canditatePanel.getName()));
+            canditatePanel.setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+
+            // JLabel for ID
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            canditatePanel.add(new JLabel("ID: " + Candidate.getId()), gbc);
+
+            // JLabel for Name
+            gbc.gridy++;
+            canditatePanel.add(new JLabel("Nombre: " + Candidate.getName()), gbc);
+
+            // JLabel for Category
+            gbc.gridy++;
+            canditatePanel.add(new JLabel("Apellido: " + Candidate.getLastName()), gbc);
+            
+            // JLabel for Image
+            gbc.gridy++;
+            try {
+                String Imagen = Candidate.getPicture();
+                ImageIcon icon = new ImageIcon(Imagen);
+                Image originalImage = icon.getImage();
+                Image resizedImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+                JLabel imageLabel = new JLabel(resizedIcon);
+
+                canditatePanel.add(imageLabel, gbc);
+            } catch (Exception e) {
+                canditatePanel.add(new JLabel("Image not available"), gbc);
+            }
+
+            // JLabel for Instructions
+            gbc.gridy++;
+            canditatePanel.add(new JLabel("Partido: " + this.partiDAO.getNameParty(Candidate.getId_party())), gbc);
+
+          
+
+            
+
+            // Botón para mostrar datos
+        gbc.gridy++;
+        JButton showDataButton = new JButton("Mostrar Datos");
+        showDataButton.addActionListener(e -> {
+            // Método para mostrar datos (puedes reemplazar esto con tu lógica específica)
+            mostrarDatos(Candidate);
+        });
+        canditatePanel.add(showDataButton, gbc);
+            mainPanel.add(canditatePanel);
+        }
+
+        scrollPane.setViewportView(mainPanel);
+    }
+      
+          private void mostrarDatos(candidate Candidate) {
+    // Aquí puedes implementar la lógica para mostrar los datos del cóctel actual
+    // Por ejemplo, puedes usar JOptionPane o cualquier otro método que prefieras.
+    JOptionPane.showMessageDialog(null, "ID: " + Candidate.getId() + "\nNombre: " + Candidate.getName() +
+            "\nApellido: " + Candidate.getLastName() + "\nPartido: " + this.partiDAO.getNameParty(Candidate.getId_party()));     
+}
 }

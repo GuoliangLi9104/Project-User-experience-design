@@ -96,6 +96,7 @@ import javax.swing.table.TableRowSorter;
     public void getIdParty(JComboBox Party) {
         this.partieID = this.daoPartie.getIDParty(Party.getSelectedItem().toString());
     }
+    
      public void loadParty(JComboBox s) {
         List<partie> parties = this.daoPartie.readParties();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();

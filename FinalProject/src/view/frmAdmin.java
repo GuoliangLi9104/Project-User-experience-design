@@ -187,6 +187,11 @@ public class frmAdmin extends javax.swing.JFrame {
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDeleteCandidates.setText("Eliminar");
+        btnDeleteCandidates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCandidatesActionPerformed(evt);
+            }
+        });
         jPanel10.add(btnDeleteCandidates, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 80, -1));
 
         btnModifyCandidates.setText("Modificar");
@@ -481,16 +486,19 @@ public class frmAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_tblTablePartyMouseClicked
 
     private void cbxCanditatesPartyItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxCanditatesPartyItemStateChanged
-        this.ctrlp.getIdParty(cbxCanditatesParty);
+        this.ctrlc.getIdParty(cbxCanditatesParty);
     }//GEN-LAST:event_cbxCanditatesPartyItemStateChanged
 
     private void btnCreateCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCandidatesActionPerformed
         String picture = getCurrentImageName();
         ctrlc.addCandidate(txtNameCandi, txtLastNameCandi, picture, cbxCanditatesParty);
+        ctrlc.loadDataCandidates(tblCandidates);
     }//GEN-LAST:event_btnCreateCandidatesActionPerformed
 
     private void btnModifyCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyCandidatesActionPerformed
-
+        String picture = getCurrentImageName();
+        ctrlc.updateCandidate(txtNameCandi, txtLastNameCandi, picture, cbxCanditatesParty);
+        ctrlc.loadDataCandidates(tblCandidates);
 
     }//GEN-LAST:event_btnModifyCandidatesActionPerformed
 
@@ -523,6 +531,11 @@ public class frmAdmin extends javax.swing.JFrame {
         ctrlp.deletePartie();
         ctrlp.loadDataParties(tblTableParty);
     }//GEN-LAST:event_btnDeletePartyActionPerformed
+
+    private void btnDeleteCandidatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCandidatesActionPerformed
+       ctrlc.deleteCandidate();
+        ctrlc.loadDataCandidates(tblCandidates);
+    }//GEN-LAST:event_btnDeleteCandidatesActionPerformed
 
     public void chargetableAll() {
         ctrlc.loadDataCandidates(tblCandidates);
