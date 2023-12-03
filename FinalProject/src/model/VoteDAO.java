@@ -23,11 +23,11 @@ public class VoteDAO {
         public void createVote(Vote votes) {
 
         DBConnectionJava db = new DBConnectionJava();
-        String consultaSQL = "INSERT INTO votes (id_voter, id_party, id_vote) VALUES (?, ?, ?)";
+        String consultaSQL = "INSERT INTO votes (id_voter, id_candidate, id_vote) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
             ps.setInt(1, votes.getIDVoter());
-            ps.setInt(2, votes.getIDParty());
+            ps.setInt(2, votes.getIDCandidate());
             ps.setInt(3, votes.getIDVote());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Se insertó correctamente el candidato");
@@ -49,7 +49,7 @@ public class VoteDAO {
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             int id_voter = resultSet.getInt("id_voter");
-            int id_party = resultSet.getInt("id_party");
+            int id_party = resultSet.getInt("id_candidate");
             int id_vote = resultSet.getInt("id_vote");
 
             Vote.add(new Vote(id,id_voter, id_party, id_vote));
@@ -64,12 +64,12 @@ public class VoteDAO {
 
   public void updateVote(Vote vote) {
     DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE vote SET id_voter=?,id_party=?, id_vote=? WHERE id=?";
+    String consultaSQL = "UPDATE vote SET id_voter=?,id_candidate=?, id_vote=? WHERE id=?";
     
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
         ps.setInt(1, vote.getIDVoter());
-        ps.setInt(1, vote.getIDParty());
+        ps.setInt(1, vote.getIDCandidate());
         ps.setInt(2, vote.getIDVote());
         ps.setInt(4, vote.getId());
         ps.execute();

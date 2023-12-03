@@ -9,21 +9,21 @@ package model;
  * @author Li
  */
 public class Vote {
-    int id, IDVoter, IDParty, IDVote;
+    int id, IDVoter, IDCandidate, IDVote;
 
       public Vote() {
     }
     
-    public Vote(int id, int IDVoter, int IDParty, int IDVote) {
+    public Vote(int id, int IDVoter, int IDCandidate, int IDVote) {
         this.id = id;
         this.IDVoter = IDVoter;
-        this.IDParty = IDParty;
+        this.IDCandidate = IDCandidate;
         this.IDVote = IDVote;
     }
 
-    public Vote(int IDVoter, int IDParty, int IDVote) {
+    public Vote(int IDVoter, int IDCandidate, int IDVote) {
         this.IDVoter = IDVoter;
-        this.IDParty = IDParty;
+        this.IDCandidate = IDCandidate;
         this.IDVote = IDVote;
     }
 
@@ -39,16 +39,16 @@ public class Vote {
         return IDVoter;
     }
 
-    public void setIDVoter(int IDVoter) {
-        this.IDVoter = IDVoter;
+    public void setIDVoter(int IDCandidate) {
+        this.IDVoter = IDCandidate;
     }
 
-    public int getIDParty() {
-        return IDParty;
+    public int getIDCandidate() {
+        return IDCandidate;
     }
 
-    public void setIDParty(int IDParty) {
-        this.IDParty = IDParty;
+    public void setIDCandidate(int IDCandidate) {
+        this.IDCandidate = IDCandidate;
     }
 
     public int getIDVote() {
