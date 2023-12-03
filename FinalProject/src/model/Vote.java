@@ -21,9 +21,9 @@ public class Vote {
         this.IDVote = IDVote;
     }
 
-    public Vote(int IDVoter, int IDCandidate, int IDVote) {
+    public Vote(int IDVoter, int IDParty, int IDVote) {
         this.IDVoter = IDVoter;
-        this.IDCandidate = IDCandidate;
+        this.IDCandidate = IDParty;
         this.IDVote = IDVote;
     }
 
@@ -39,8 +39,8 @@ public class Vote {
         return IDVoter;
     }
 
-    public void setIDVoter(int IDCandidate) {
-        this.IDVoter = IDCandidate;
+    public void setIDVoter(int IDVoter) {
+        this.IDVoter = IDVoter;
     }
 
     public int getIDCandidate() {

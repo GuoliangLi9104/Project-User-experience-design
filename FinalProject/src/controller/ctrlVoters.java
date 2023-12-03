@@ -4,6 +4,9 @@
  */
 package controller;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -13,8 +16,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import model.Voters;
-import model.VotersDAO;
+import model.*;
+import view.*;
 
 /**
  *
@@ -22,7 +25,8 @@ import model.VotersDAO;
  */
 public class ctrlVoters {
     private VotersDAO daoVoters = new VotersDAO();
-    private int id, voterID;
+    private candidateDAO daoCandi = new candidateDAO();
+    private int id, voterID, candidateID;
 
     public void loadDataVoters(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -62,6 +66,10 @@ public class ctrlVoters {
         this.voterID = this.daoVoters.getIDVoters(voter.getSelectedItem().toString());
     }
 
+     public void getIDCandidate(JComboBox candidate) {
+        this.candidateID = this.daoCandi.getIDCandidate(candidate.getSelectedItem().toString());
+    }
+    
     public void loadVoter(JComboBox s) {
         List<Voters> votersList = this.daoVoters.readVoters();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -95,5 +103,10 @@ public class ctrlVoters {
         IDNumber.setText("");
         vote.setText("");
     }
+    
+    public void authenticateVoter(String ID) {
+        Voters voters = null;
+        voters = daoVoters.authenticateVoter(ID);
+        frmVoter voteForms = new frmVoter(voters);
+    }
 }
-

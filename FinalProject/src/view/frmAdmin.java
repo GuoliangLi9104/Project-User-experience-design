@@ -29,7 +29,6 @@ public class frmAdmin extends javax.swing.JFrame {
         initComponents();
         this.loadCbxCandidatesParty();
         this.chargetableAll();
-        this.loadCbxVotes();
     }
 
     /**
@@ -323,7 +322,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Candidato:");
+        jLabel10.setText("Partido:");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -342,7 +341,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         cbxPartyVotes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbxPartyVotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel7.add(cbxPartyVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 180, -1));
+        jPanel7.add(cbxPartyVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, -1));
 
         tblTableVote.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -352,40 +351,20 @@ public class frmAdmin extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Candidato", "Voto"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblTableVote.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblTableVoteMouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(tblTableVote);
 
         jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
 
         btnCreateVote.setText("Agregar");
-        btnCreateVote.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateVoteActionPerformed(evt);
-            }
-        });
         jPanel7.add(btnCreateVote, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 80, -1));
 
         btnDeleteVotes.setText("Eliminar");
-        btnDeleteVotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteVotesActionPerformed(evt);
-            }
-        });
         jPanel7.add(btnDeleteVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 80, -1));
 
         btnModifyVotes.setText("Modificar");
-        btnModifyVotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyVotesActionPerformed(evt);
-            }
-        });
         jPanel7.add(btnModifyVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
 
         txtVotesVotes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -558,25 +537,6 @@ public class frmAdmin extends javax.swing.JFrame {
         ctrlc.loadDataCandidates(tblCandidates);
     }//GEN-LAST:event_btnDeleteCandidatesActionPerformed
 
-    private void tblTableVoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTableVoteMouseClicked
-       this.ctrlVote.selectedRow(tblTableVote, cbxNameVotes, cbxPartyVotes, txtVotesVotes);
-    }//GEN-LAST:event_tblTableVoteMouseClicked
-
-    private void btnCreateVoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVoteActionPerformed
-        ctrlVote.addVote(cbxNameVotes, cbxPartyVotes, txtVotesVotes);
-        ctrlVote.loadDataVotes(tblTableVote);
-    }//GEN-LAST:event_btnCreateVoteActionPerformed
-
-    private void btnModifyVotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyVotesActionPerformed
-        ctrlVote.updateVote(cbxNameVotes, cbxPartyVotes, txtVotesVotes);
-        ctrlVote.loadDataVotes(tblTableVote);
-    }//GEN-LAST:event_btnModifyVotesActionPerformed
-
-    private void btnDeleteVotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVotesActionPerformed
-        ctrlVote.deleteVote();
-        ctrlVote.loadDataVotes(tblTableVote);
-    }//GEN-LAST:event_btnDeleteVotesActionPerformed
-
     public void chargetableAll() {
         ctrlc.loadDataCandidates(tblCandidates);
         ctrlVote.loadDataVotes(tblTableVote);
@@ -595,13 +555,6 @@ public class frmAdmin extends javax.swing.JFrame {
         this.ctrlp.loadParty(cbxCanditatesParty);
     }
 
-     public void loadCbxVotes() {
-        this.ctrlVoter.getIDVoter(cbxNameVotes);
-        this.ctrlVoter.loadVoter(cbxNameVotes);
-        this.ctrlc.getIDCandidate(cbxPartyVotes);
-        this.ctrlc.loadCandidate(cbxPartyVotes);
-    }
-    
     public String getCurrentImageName() {
         return (String) this.lblImagenCandi.getClientProperty("nameImagen");
     }

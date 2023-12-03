@@ -143,4 +143,51 @@ public class VotersDAO {
         }
         return value;
     }
+    
+     public Voters authenticateVoter(String ID) {
+        DBConnectionJava db = new DBConnectionJava();
+        int IDNumber = Integer.parseInt(ID);
+        Voters voters = null;
+        String sql = "SELECT * FROM voters WHERE idNumber = ?";
+
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(sql);
+            ps.setInt(1, IDNumber);
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                int idNumber = resultSet.getInt("idNumber");
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastName");
+                int vote = resultSet.getInt("vote");
+
+                voters = new Voters(id, idNumber, name, lastName, vote);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            db.disconnect();
+        }
+
+        return voters;
+    }
+     
+     
+     public void decreaseVote(Voters voters) {
+    DBConnectionJava db = new DBConnectionJava();
+    String consultaSQL = "UPDATE voters SET vote = vote - 1 WHERE id=?";
+
+    try {
+        PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);
+        ps.setInt(1, voters.getId());
+        ps.execute();
+        JOptionPane.showMessageDialog(null, "Voto disminuido exitosamente");
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "No se disminuyó el voto, error: " + e.toString());
+    } finally {
+        db.disconnect();
+    }
+}
+    
 }

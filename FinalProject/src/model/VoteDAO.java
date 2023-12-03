@@ -64,7 +64,7 @@ public class VoteDAO {
 
   public void updateVote(Vote vote) {
     DBConnectionJava db = new DBConnectionJava();
-    String consultaSQL = "UPDATE vote SET id_voter=?,id_candidate=?, id_vote=? WHERE id=?";
+    String consultaSQL = "UPDATE vote SET id_voter=?,id_party=?, id_vote=? WHERE id=?";
     
     try {
         PreparedStatement ps = db.getConnection().prepareStatement(consultaSQL);

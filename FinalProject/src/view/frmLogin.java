@@ -5,12 +5,20 @@
 package view;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import model.*;
+import view.*;
 
 /**
  *
  * @author Li
  */
 public class frmLogin extends javax.swing.JFrame {
+
+    VotersDAO DaoVoters = new VotersDAO();
+    Voters voter = null;
 
     /**
      * Creates new form login
@@ -43,7 +51,7 @@ public class frmLogin extends javax.swing.JFrame {
         JPMain = new javax.swing.JPanel();
         JPLVoter = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
-        lblId = new javax.swing.JTextField();
+        txtIDNumber = new javax.swing.JTextField();
         lblGetIntoVoter = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         btnExitAll = new javax.swing.JButton();
@@ -69,14 +77,19 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel1.setText("Ingrese su numero de cedula");
         JPLVoter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
-        lblId.addActionListener(new java.awt.event.ActionListener() {
+        txtIDNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblIdActionPerformed(evt);
+                txtIDNumberActionPerformed(evt);
             }
         });
-        JPLVoter.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 260, 30));
+        JPLVoter.add(txtIDNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 260, 30));
 
         lblGetIntoVoter.setText("Ingresar");
+        lblGetIntoVoter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblGetIntoVoterActionPerformed(evt);
+            }
+        });
         JPLVoter.add(lblGetIntoVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
         btnAdmin.setText("Admin");
@@ -94,8 +107,6 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
         JPLVoter.add(btnExitAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 70, -1));
-
-        lblWallpaperLogn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Li\\Music\\Project-User-experience-design\\FinalProject\\Imagenes\\Elecciones electorales.png")); // NOI18N
         JPLVoter.add(lblWallpaperLogn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 500, 220));
 
         JPMain.add(JPLVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 200));
@@ -125,8 +136,6 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
         JPLAdmin.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, -1, -1));
-
-        lblWallpaperAdmin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Li\\Music\\Project-User-experience-design\\FinalProject\\Imagenes\\Elecciones electorales.png")); // NOI18N
         JPLAdmin.add(lblWallpaperAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 500, 220));
 
         JPMain.add(JPLAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 200));
@@ -145,9 +154,9 @@ public class frmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblIdActionPerformed
+    private void txtIDNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDNumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblIdActionPerformed
+    }//GEN-LAST:event_txtIDNumberActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -166,6 +175,24 @@ public class frmLogin extends javax.swing.JFrame {
     private void btnExitAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitAllActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnExitAllActionPerformed
+
+    private void lblGetIntoVoterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblGetIntoVoterActionPerformed
+        String IDNumber = txtIDNumber.getText();
+        Voters voter = DaoVoters.authenticateVoter(IDNumber);
+
+        if (voter != null) {
+            mostrarFrmVoter(voter);
+        } else {
+            // Mostrar un mensaje de error si la autenticación falla
+            JOptionPane.showMessageDialog(null, "Error de autenticación. Verifica el número de identificación.");
+        }
+    }//GEN-LAST:event_lblGetIntoVoterActionPerformed
+
+    public void mostrarFrmVoter(Voters voter) {
+       frmVoter fvoter = new frmVoter(voter);
+    }
+
+
 
     /**
      * @param args the command line arguments
@@ -214,9 +241,9 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton lblGetIntoVoter;
-    private javax.swing.JTextField lblId;
     private javax.swing.JLabel lblWallpaperAdmin;
     private javax.swing.JLabel lblWallpaperLogn;
+    private javax.swing.JTextField txtIDNumber;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

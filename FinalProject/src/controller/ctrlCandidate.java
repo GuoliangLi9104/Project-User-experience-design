@@ -29,14 +29,20 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import model.*;
+import view.*;
 
 /**
  *
  * @author JRS
  */
 public class ctrlCandidate {
+
     private candidateDAO daoCandi = new candidateDAO();
     private partieDAO partiDAO = new partieDAO();
+    private ctrlVote ctrlVote = new ctrlVote();
+    private ctrlVoters ctrlVoters = new ctrlVoters();
+    private VotersDAO daoVoters = new VotersDAO();
+    private frmLogin login = new frmLogin();
     private int id, candidateID, partyID;
 
     public void loadDataCandidates(JTable table) {
@@ -51,7 +57,7 @@ public class ctrlCandidate {
         }
     }
 
-    public void addCandidate(JTextField name, JTextField lastName, String picture,JComboBox id_party) {
+    public void addCandidate(JTextField name, JTextField lastName, String picture, JComboBox id_party) {
         try {
             this.daoCandi.createCandidate(new candidate(0, name.getText(), lastName.getText(), picture, this.partyID));
             JOptionPane.showMessageDialog(null, "Candidato agregado con éxito");
@@ -77,10 +83,10 @@ public class ctrlCandidate {
         this.candidateID = this.daoCandi.getIDCandidate(candidate.getSelectedItem().toString());
     }
 
-      public void getIdParty(JComboBox Party) {
+    public void getIdParty(JComboBox Party) {
         this.partyID = this.partiDAO.getIDParty(Party.getSelectedItem().toString());
     }
-    
+
     public void loadCandidate(JComboBox s) {
         List<candidate> candidates = this.daoCandi.readCandidate();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -89,37 +95,36 @@ public class ctrlCandidate {
         }
         s.setModel(model);
     }
-    
-    
-  public String selectedRow(JTable table, JTextField name, JTextField lastName, String picture, JComboBox id_party) {
-  String imagen = "";  // Holds the picture route
-    try {
-        int row = table.getSelectedRow();
-        if (row >= 0) {
-            this.id = Integer.parseInt(table.getValueAt(row, 0).toString());
-            name.setText(table.getValueAt(row, 1).toString());
-            lastName.setText(table.getValueAt(row, 2).toString());
-            imagen = table.getValueAt(row, 3).toString();
-            id_party.setSelectedItem(table.getValueAt(row, 4).toString());
-        } else {
-            JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+
+    public String selectedRow(JTable table, JTextField name, JTextField lastName, String picture, JComboBox id_party) {
+        String imagen = "";  // Holds the picture route
+        try {
+            int row = table.getSelectedRow();
+            if (row >= 0) {
+                this.id = Integer.parseInt(table.getValueAt(row, 0).toString());
+                name.setText(table.getValueAt(row, 1).toString());
+                lastName.setText(table.getValueAt(row, 2).toString());
+                imagen = table.getValueAt(row, 3).toString();
+                id_party.setSelectedItem(table.getValueAt(row, 4).toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Fila no seleccionada");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.toString());
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error de selección, error: " + e.toString());
+        return imagen;  // Devuelve la ruta de la imagen
     }
-    return imagen;  // Devuelve la ruta de la imagen
-}
 
     public void clearFields(JTextField name, JTextField lastName, JTextField id_party) {
         name.setText("");
         lastName.setText("");
     }
-    
-      public void displayCanditates(JScrollPane scrollPane) {
+
+    public void displayCanditates(JScrollPane scrollPane, Voters voter, frmVoter frmVoterRef) {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         List<candidate> candidates = daoCandi.readCandidate();
-        
+
         for (candidate Candidate : candidates) {
             JPanel canditatePanel = new JPanel();
             canditatePanel.setPreferredSize(new Dimension(300, 200));
@@ -139,7 +144,7 @@ public class ctrlCandidate {
             // JLabel for Category
             gbc.gridy++;
             canditatePanel.add(new JLabel("Apellido: " + Candidate.getLastName()), gbc);
-            
+
             // JLabel for Image
             gbc.gridy++;
             try {
@@ -160,28 +165,25 @@ public class ctrlCandidate {
             gbc.gridy++;
             canditatePanel.add(new JLabel("Partido: " + this.partiDAO.getNameParty(Candidate.getId_party())), gbc);
 
-          
-
             
-
-            // Botón para mostrar datos
-        gbc.gridy++;
-        JButton showDataButton = new JButton("Mostrar Datos");
-        showDataButton.addActionListener(e -> {
-            // Método para mostrar datos (puedes reemplazar esto con tu lógica específica)
-            mostrarDatos(Candidate);
-        });
-        canditatePanel.add(showDataButton, gbc);
+            gbc.gridy++;
+            JButton showDataButton = new JButton("Votar");
+            showDataButton.addActionListener(e -> {
+                // Método para mostrar datos (puedes reemplazar esto con tu lógica específica)
+                Votes(Candidate, voter);
+                // Mostrar nueva ventana y cerrar la actual
+                //frmVoterRef.dispose();  // Cerrar la ventana actual
+            });
+            canditatePanel.add(showDataButton, gbc);
             mainPanel.add(canditatePanel);
-        }
 
+        }
         scrollPane.setViewportView(mainPanel);
     }
-      
-          private void mostrarDatos(candidate Candidate) {
-    // Aquí puedes implementar la lógica para mostrar los datos del cóctel actual
-    // Por ejemplo, puedes usar JOptionPane o cualquier otro método que prefieras.
-    JOptionPane.showMessageDialog(null, "ID: " + Candidate.getId() + "\nNombre: " + Candidate.getName() +
-            "\nApellido: " + Candidate.getLastName() + "\nPartido: " + this.partiDAO.getNameParty(Candidate.getId_party()));     
-}
+
+    private void Votes(candidate Candidate, Voters voter) {
+        ctrlVote.addVote(voter.getId(), Candidate.getId(), 1);
+        daoVoters.decreaseVote(voter);
+    }
+
 }
