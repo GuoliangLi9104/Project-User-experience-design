@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.Validation;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -177,15 +178,19 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitAllActionPerformed
 
     private void lblGetIntoVoterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblGetIntoVoterActionPerformed
+       Validation validator = new Validation();
         String IDNumber = txtIDNumber.getText();
+        if (validator.validateID(IDNumber)){
         Voters voter = DaoVoters.authenticateVoter(IDNumber);
 
         if (voter != null) {
             mostrarFrmVoter(voter);
         } else {
-            // Mostrar un mensaje de error si la autenticación falla
-            JOptionPane.showMessageDialog(null, "Error de autenticación. Verifica el número de identificación.");
+            JOptionPane.showMessageDialog(null, "Error de autenticación. Verifica que el número de identificación sea existente");
         }
+    } else {JOptionPane.showMessageDialog(null, "Error: El formato del ID no es válido.");
+            }
+        
     }//GEN-LAST:event_lblGetIntoVoterActionPerformed
 
     public void mostrarFrmVoter(Voters voter) {

@@ -146,7 +146,7 @@ public class VotersDAO {
     
      public Voters authenticateVoter(String ID) {
         DBConnectionJava db = new DBConnectionJava();
-        int IDNumber = Integer.parseInt(ID);
+        int IDNumber = Integer.parseInt(ID.replace("-", ""));
         Voters voters = null;
         String sql = "SELECT * FROM voters WHERE idNumber = ?";
 
