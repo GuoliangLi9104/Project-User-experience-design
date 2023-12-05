@@ -657,6 +657,8 @@ public class frmAdmin extends javax.swing.JFrame {
     public String getCurrentImageName() {
         return (String) this.lblImagenCandi.getClientProperty("nameImagen");
     }
+  
+
 
     /**
      * @param args the command line arguments

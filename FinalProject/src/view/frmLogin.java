@@ -128,6 +128,11 @@ public class frmLogin extends javax.swing.JFrame {
         JPLAdmin.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 300, -1));
 
         btnGetIntoAdmin.setText("Ingresar");
+        btnGetIntoAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetIntoAdminActionPerformed(evt);
+            }
+        });
         JPLAdmin.add(btnGetIntoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
         btnExit.setText("Salir");
@@ -178,26 +183,36 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitAllActionPerformed
 
     private void lblGetIntoVoterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblGetIntoVoterActionPerformed
-       Validation validator = new Validation();
+        Validation validator = new Validation();
         String IDNumber = txtIDNumber.getText();
-        if (validator.validateID(IDNumber)){
-        Voters voter = DaoVoters.authenticateVoter(IDNumber);
+        if (validator.validateID(IDNumber)) {
+            Voters voter = DaoVoters.authenticateVoter(IDNumber);
 
-        if (voter != null) {
-            mostrarFrmVoter(voter);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error de autenticación. Verifica que el número de identificación sea existente");
-        }
-    } else {JOptionPane.showMessageDialog(null, "Error: El formato del ID no es válido.");
+            if (voter != null) {
+                mostrarFrmVoter(voter);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error de autenticación. Verifica que el número de identificación sea existente");
             }
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: El formato del ID no es válido.");
+        }
+
     }//GEN-LAST:event_lblGetIntoVoterActionPerformed
 
+    private void btnGetIntoAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetIntoAdminActionPerformed
+        String enteredPassword = new String(txtPassword.getPassword());
+
+        if (enteredPassword.equals("123456")) {
+            JPMain.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Intenta de nuevo.");
+            txtPassword.setText("");
+        }
+    }//GEN-LAST:event_btnGetIntoAdminActionPerformed
+
     public void mostrarFrmVoter(Voters voter) {
-       frmVoter fvoter = new frmVoter(voter);
+        frmVoter fvoter = new frmVoter(voter);
     }
-
-
 
     /**
      * @param args the command line arguments
