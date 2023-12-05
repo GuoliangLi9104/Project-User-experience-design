@@ -5,11 +5,25 @@
 package view;
 
 import controller.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.File;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -29,6 +43,8 @@ public class frmAdmin extends javax.swing.JFrame {
         initComponents();
         this.loadCbxCandidatesParty();
         this.chargetableAll();
+        this.loadCbxAll();
+        this.seeVotes();
     }
 
     /**
@@ -97,6 +113,7 @@ public class frmAdmin extends javax.swing.JFrame {
         btnCreateParty = new javax.swing.JButton();
         btnDeleteParty = new javax.swing.JButton();
         btnModifyParty = new javax.swing.JButton();
+        pnlGraf = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -322,7 +339,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Partido:");
+        jLabel10.setText("Candidato:");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -341,7 +358,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         cbxPartyVotes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         cbxPartyVotes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel7.add(cbxPartyVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 180, -1));
+        jPanel7.add(cbxPartyVotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 180, -1));
 
         tblTableVote.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -351,9 +368,14 @@ public class frmAdmin extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Candidato", "Voto"
             }
         ));
+        tblTableVote.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTableVoteMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblTableVote);
 
         jPanel7.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 800, 360));
@@ -451,6 +473,19 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Partidos", jPanel2);
 
+        javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
+        pnlGraf.setLayout(pnlGrafLayout);
+        pnlGrafLayout.setHorizontalGroup(
+            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        pnlGrafLayout.setVerticalGroup(
+            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 569, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Grafico", pnlGraf);
+
         JPMain.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
 
         getContentPane().add(JPMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -537,6 +572,10 @@ public class frmAdmin extends javax.swing.JFrame {
         ctrlc.loadDataCandidates(tblCandidates);
     }//GEN-LAST:event_btnDeleteCandidatesActionPerformed
 
+    private void tblTableVoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTableVoteMouseClicked
+        ctrlVote.selectedRow(tblTableVote, cbxNameVotes, cbxPartyVotes, txtVotesVotes);
+    }//GEN-LAST:event_tblTableVoteMouseClicked
+
     public void chargetableAll() {
         ctrlc.loadDataCandidates(tblCandidates);
         ctrlVote.loadDataVotes(tblTableVote);
@@ -554,7 +593,67 @@ public class frmAdmin extends javax.swing.JFrame {
         this.ctrlp.getIdParty(cbxCanditatesParty);
         this.ctrlp.loadParty(cbxCanditatesParty);
     }
+    
+    public void loadCbxAll() {
+        this.ctrlVoter.getIDVoter(cbxNameVotes);
+        this.ctrlVoter.loadVoter(cbxNameVotes);
+        this.ctrlc.getIDCandidate(cbxPartyVotes);
+        this.ctrlc.loadCandidate(cbxPartyVotes);
+    }
 
+    
+    public void seeVotes() {
+        pnlGraf.removeAll();
+        pnlGraf.repaint();
+
+        List<Integer> avareges = ctrlVote.getAvarage();
+        List<String> names = ctrlVote.getNameCandidate();
+        String selectedSubject = "Votos";
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for (int i = 0; i < avareges.size(); i++) {
+            dataset.addValue(avareges.get(i), selectedSubject, names.get(i));
+        }
+
+        JFreeChart grafico_barras = ChartFactory.createBarChart(
+                "Votos",
+                "Candidatos",
+                "Ponderado Total",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true, // Incluye leyenda
+                true,
+                false
+        );
+
+        CategoryPlot plot = grafico_barras.getCategoryPlot();
+        CategoryItemRenderer renderer = plot.getRenderer();
+
+// Personaliza el color de las barras
+        renderer.setSeriesPaint(0, java.awt.Color.BLUE);
+        renderer.setSeriesPaint(1, java.awt.Color.RED);
+        renderer.setSeriesPaint(2, java.awt.Color.GREEN);
+
+        CategoryAxis domainAxis = plot.getDomainAxis();
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+// Personalización de las etiquetas
+        renderer.setBaseItemLabelsVisible(true);
+        renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+
+        ChartPanel panel = new ChartPanel(grafico_barras);
+        panel.setMouseWheelEnabled(true);
+        panel.setPreferredSize(new Dimension(700, 600));
+        pnlGraf.setLayout(new BorderLayout());
+        pnlGraf.add(panel, BorderLayout.NORTH);
+
+        pack();
+        repaint();
+
+    }
     public String getCurrentImageName() {
         return (String) this.lblImagenCandi.getClientProperty("nameImagen");
     }
@@ -641,6 +740,7 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblLastNameVoters;
     private javax.swing.JLabel lblNameVoters;
     private javax.swing.JLabel lblVoteVoters;
+    private javax.swing.JPanel pnlGraf;
     private javax.swing.JTable tblCandidates;
     private javax.swing.JTable tblTableParty;
     private javax.swing.JTable tblTableVote;

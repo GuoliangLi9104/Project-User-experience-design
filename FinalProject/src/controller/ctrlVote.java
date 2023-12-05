@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -14,16 +16,18 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Vote;
 import model.*;
+
 /**
  *
  * @author JRS
  */
 public class ctrlVote {
+
     private VoteDAO daoVote = new VoteDAO();
     private partieDAO partiDAO = new partieDAO();
     private VotersDAO votersDAO = new VotersDAO();
     private candidateDAO candiDAO = new candidateDAO();
-    private int id, voteID, candiID,votersID;
+    private int id, voteID, candiID, votersID;
 
     public void loadDataVotes(JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -63,14 +67,14 @@ public class ctrlVote {
         this.voteID = this.daoVote.getIDVote(vote.getSelectedItem().toString());
     }
 
-     public void getIDCandidate(JComboBox candidate) {
+    public void getIDCandidate(JComboBox candidate) {
         this.candiID = this.candiDAO.getIDCandidate(candidate.getSelectedItem().toString());
     }
-    
+
     public void getIDVoter(JComboBox voter) {
         this.votersID = this.votersDAO.getIDVoters(voter.getSelectedItem().toString());
     }
-     
+
     public void loadVote(JComboBox s) {
         List<Vote> votesList = this.daoVote.readVote();
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
@@ -80,13 +84,13 @@ public class ctrlVote {
         s.setModel(model);
     }
 
-    public String selectedRow(JTable table, JTextField idVoter, JTextField idParty, JTextField idVote) {
+    public String selectedRow(JTable table, JComboBox idVoter, JComboBox idParty, JTextField idVote) {
         try {
             int row = table.getSelectedRow();
             if (row >= 0) {
                 this.id = Integer.parseInt(table.getValueAt(row, 0).toString());
-                idVoter.setText(table.getValueAt(row, 1).toString());
-                idParty.setText(table.getValueAt(row, 2).toString());
+                idVoter.setSelectedItem(table.getValueAt(row, 1).toString());
+                idParty.setSelectedItem(table.getValueAt(row, 2).toString());
                 idVote.setText(table.getValueAt(row, 3).toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Fila no seleccionada");
@@ -94,7 +98,7 @@ public class ctrlVote {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error de seleccion : " + e.toString());
         }
-        return "";  
+        return "";
     }
 
     public void addVote(int idVoter, int idCandidate, int idVote) {
@@ -105,10 +109,17 @@ public class ctrlVote {
             JOptionPane.showMessageDialog(null, "Error en el formato: " + e.toString());
         }
     }
-    
-    
-    
-    
+
+    public List<String> getNameCandidate() {
+        List<String> names = daoVote.getNames();
+        return names;
+    }
+
+    public List<Integer> getAvarage() {
+        List<Integer> Average = daoVote.getVotes();
+        return Average;
+    }
+
     //Method clear fields
     public void clearFields(JTextField idVoter, JTextField idParty, JTextField idVote) {
         idVoter.setText("");
