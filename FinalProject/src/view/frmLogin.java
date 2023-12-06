@@ -56,6 +56,7 @@ public class frmLogin extends javax.swing.JFrame {
         lblGetIntoVoter = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         btnExitAll = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         lblWallpaperLogn = new javax.swing.JLabel();
         JPLAdmin = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
@@ -91,7 +92,7 @@ public class frmLogin extends javax.swing.JFrame {
                 lblGetIntoVoterActionPerformed(evt);
             }
         });
-        JPLVoter.add(lblGetIntoVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
+        JPLVoter.add(lblGetIntoVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         btnAdmin.setText("Admin");
         btnAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +109,9 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
         JPLVoter.add(btnExitAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 70, -1));
+
+        jLabel3.setText("Ejemplo: X-XXXX-XXXX");
+        JPLVoter.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
         JPLVoter.add(lblWallpaperLogn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 500, 220));
 
         JPMain.add(JPLVoter, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 200));
@@ -127,7 +131,7 @@ public class frmLogin extends javax.swing.JFrame {
         });
         JPLAdmin.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 300, -1));
 
-        btnGetIntoAdmin.setText("Ingresar");
+        btnGetIntoAdmin.setText("Ingresar Admin");
         btnGetIntoAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGetIntoAdminActionPerformed(evt);
@@ -201,14 +205,19 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnGetIntoAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetIntoAdminActionPerformed
         String enteredPassword = new String(txtPassword.getPassword());
-
+        
         if (enteredPassword.equals("123456")) {
-            JPMain.setVisible(true);
+            this.showAdmin();
         } else {
             JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Intenta de nuevo.");
             txtPassword.setText("");
         }
     }//GEN-LAST:event_btnGetIntoAdminActionPerformed
+    public void showAdmin() {
+        frmAdmin frmadmin = new frmAdmin();
+        frmadmin.setVisible(true);
+        this.dispose();
+    }
 
     public void mostrarFrmVoter(Voters voter) {
         frmVoter fvoter = new frmVoter(voter);
@@ -260,6 +269,7 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnGetIntoAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton lblGetIntoVoter;
     private javax.swing.JLabel lblWallpaperAdmin;
     private javax.swing.JLabel lblWallpaperLogn;
