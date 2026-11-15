@@ -68,3 +68,17 @@ Las contribuciones al proyecto son bienvenidas. Para obtener más detalles, cons
 
 Licencia
 Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE.md para más detalles.
+
+<!-- verified-builds-20261115:start -->
+## Compilación comprobada
+
+- Compilación satisfactoria registrada para `FinalProject/build.xml`.
+
+Comandos:
+
+```powershell
+.\build-local.ps1
+```
+
+La compilación no acredita todos los flujos gráficos, conexiones a bases de datos ni servicios externos. No se ejecutaron operaciones de administración contra esos servicios.
+<!-- verified-builds-20261115:end -->
